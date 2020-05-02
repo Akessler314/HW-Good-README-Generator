@@ -68,6 +68,7 @@ const questions = [
 
 function writeToFile(fileName, data) {
 
+    console.log("ReadMe has been generated") 
 }
 
 function init() {
