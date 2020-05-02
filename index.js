@@ -1,5 +1,5 @@
 const fs = require("fs");
-const axios = require("axios");
+// const axios = require("axios");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown.js");
 
@@ -68,11 +68,23 @@ const questions = [
 
 function writeToFile(fileName, data) {
 
-    console.log("ReadMe has been generated") 
+
+    //after the file is gnerated displays a message that it was sucsesful. 
+    console.log("ReadMe has been generated"); 
 }
 
 function init() {
-console.log(questions)
+inquirer.prompt(questions).then(function(response){
+//Shows waht the resposne for the questions were. 
+console.log(response)
+})
+//console log to make sure that the questions are being called correctly (get rid of this in final project)
+console.log(questions); 
+
+
 }
 
 init();
+writeToFile(); 
+
+
