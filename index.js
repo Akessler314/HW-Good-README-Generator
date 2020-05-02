@@ -67,10 +67,11 @@ const questions = [
 ];
 
 function writeToFile(fileName, data) {
+
 }
 
 function init() {
-
+console.log(questions)
 }
 
 init();
