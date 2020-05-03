@@ -67,15 +67,6 @@ const questions = [
 
 ];
 
-// function writeToFile(fileName, data) {
-
-//     let readMeFile = generateMarkdown(data)
-
-//     fs.writeToFile(fileName, readMeFile) 
-//     //after the file is gnerated displays a message that it was sucsesful. 
-//     console.log("ReadMe has been generated"); 
-// }
-
 function init() {
 inquirer.prompt(questions).then((response)=>{
 
@@ -86,7 +77,7 @@ fs.appendFileSync("README.md", ("# " + response.repoName )+ '\n', function(err) 
     console.log(err)
     }
     else {
-    console.log("we did it boss 1")
+    console.log("Success")
     }
 
 })
@@ -97,7 +88,7 @@ fs.appendFileSync("README.md", ("This application was developed by: " + response
     console.log(err)
     }
     else {
-    console.log("we did it boss 2")
+    console.log("Success")
     }
 
 })
@@ -108,7 +99,7 @@ fs.appendFileSync("README.md", ( response.description ) + '\n', function(err) {
     console.log(err)
     }
     else {
-    console.log("we did it boss 3")
+    console.log("Success")
     }
 
 })
@@ -119,7 +110,7 @@ fs.appendFileSync("README.md", ("## Installation" + '\n' + response.installApp )
     console.log(err)
     }
     else {
-    console.log("we did it boss")
+    console.log("Success")
     }
 
 })
@@ -130,7 +121,7 @@ fs.appendFileSync("README.md", ("## How to use the Application" + '\n' + respons
     console.log(err)
     }
     else {
-    console.log("we did it boss")
+    console.log("Success")
     }
 
 })
@@ -141,7 +132,7 @@ fs.appendFileSync("README.md", ("## Issue Reporting and Contributing" + '\n' + r
     console.log(err)
     }
     else {
-    console.log("we did it boss")
+    console.log("Success")
     }
 
 })
@@ -152,7 +143,7 @@ fs.appendFileSync("README.md", ("## Other Contibuting Developers:" + '\n' + resp
     console.log(err)
     }
     else {
-    console.log("we did it boss")
+    console.log("Success")
     }
 
 })
@@ -163,7 +154,7 @@ fs.appendFileSync("README.md", ("## Licence(s)" + '\n' + response.license)+ '\n'
     console.log(err)
     }
     else {
-    console.log("we did it boss")
+    console.log("Success")
     }
 
 })
@@ -171,7 +162,7 @@ fs.appendFileSync("README.md", ("## Licence(s)" + '\n' + response.license)+ '\n'
 })
 }
 
-
+//runs the function to creat the file 
 init();
 
 
