@@ -1,23 +1,24 @@
 const fs = require("fs");
-// const axios = require("axios");
+// const axios = require("axios"); not needed 
 const inquirer = require("inquirer");
-const generateMarkdown = require("./utils/generateMarkdown.js");
+// const generateMarkdown = require("./utils/generateMarkdown.js");
 
 
 
 const questions = [
+    //ask user for name of the app 
+    {
+      
+        type: 'input',
+        name: 'repoName',
+        message: 'What is name of this application? (This will aslo the main header of the README)',
+     
+    },
     //asks user for git hub user name 
     {
         type: 'input',
         name: 'gitHubName',
         message: 'What is your username on Github?',
-     
-    },
-    // ask user for name of the app 
-    {
-        type: 'input',
-        name: 'repoName',
-        message: 'What is name of this application?',
      
     },
     // asks for a description of the project 
@@ -44,7 +45,7 @@ const questions = [
     // How would a user of this application report an issue, or make a contribution to it? 
     {
         type: 'input',
-        message: 'What is your Github name?',
+        message: 'Would you like you users to be able to report issues or contribute to this project? add instructions here.',
         name: 'appIssuesAndCont',
      
     },
@@ -66,25 +67,125 @@ const questions = [
 
 ];
 
-function writeToFile(fileName, data) {
+// function writeToFile(fileName, data) {
 
+//     let readMeFile = generateMarkdown(data)
 
-    //after the file is gnerated displays a message that it was sucsesful. 
-    console.log("ReadMe has been generated"); 
-}
+//     fs.writeToFile(fileName, readMeFile) 
+//     //after the file is gnerated displays a message that it was sucsesful. 
+//     console.log("ReadMe has been generated"); 
+// }
 
 function init() {
-inquirer.prompt(questions).then(function(response){
-//Shows waht the resposne for the questions were. 
-console.log(response)
+inquirer.prompt(questions).then((response)=>{
+
+// this will Create the first line and main header for the repo (that is what the "# " is for) using the users resonse to RepoName
+fs.appendFileSync("README.md", ("# " + response.repoName )+ '\n', function(err) { 
+
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss 1")
+    }
+
 })
-//console log to make sure that the questions are being called correctly (get rid of this in final project)
-console.log(questions); 
+// this will create the 2nd line of readme discribing the application was developed by the users reponse to githubname 
+fs.appendFileSync("README.md", ("This application was developed by: " + response.gitHubName + '\n') + '\n', function(err) { 
 
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss 2")
+    }
 
+})
+// adds the discription of the project that the users entered 
+fs.appendFileSync("README.md", ( response.description ) + '\n', function(err) { 
+
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss 3")
+    }
+
+})
+//creates a sub header for installation and adds the instructions the users entered 
+fs.appendFileSync("README.md", ("## Installation" + '\n' + response.installApp )+ '\n', function(err) { 
+
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss")
+    }
+
+})
+// creates a sub header for App usage and adds the instructions the users entered 
+fs.appendFileSync("README.md", ("## How to use the Application" + '\n' + response.appInstructions)+ '\n', function(err) { 
+
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss")
+    }
+
+})
+// creates a sub header for issue reporting and contriubiting and adds the instructions the users entered 
+fs.appendFileSync("README.md", ("## Issue Reporting and Contributing" + '\n' + response.appIssuesAndCont)+ '\n', function(err) { 
+
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss")
+    }
+
+})
+// creates a sub header for issue reporting and contriubiting and adds the instructions the users entered 
+fs.appendFileSync("README.md", ("## Other Contibuting Developers:" + '\n' + response.contributors)+ '\n', function(err) { 
+
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss")
+    }
+
+})
+// creates a sub header for licences and adds the licences the users entered 
+fs.appendFileSync("README.md", ("## Licence(s)" + '\n' + response.license)+ '\n', function(err) { 
+
+    if (err) { 
+    console.log(err)
+    }
+    else {
+    console.log("we did it boss")
+    }
+
+})
+
+})
 }
 
+
 init();
-writeToFile(); 
 
 
+//-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//for testing purposes: 
+
+//Shows waht the resposne for the questions were. 
+// console.log(response)
+// console.log(response.gitHubName)
+// console.log(response.repoName)
+// console.log(response.description)
+// console.log(response.appInstructions)
+// console.log(response.appIssuesAndCont)
+// console.log(response.license)
+// console.log(response.contributors)
